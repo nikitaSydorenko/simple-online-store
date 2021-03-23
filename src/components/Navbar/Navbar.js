@@ -51,10 +51,12 @@ const Navbar = () => {
                     <Typography variant="h3" className={classes.title}>
                        <NavLink className={classes.link} to='/'>Shopping</NavLink>
                     </Typography>
+                    <NavLink to='/cart'>
                     <Button className={classes.deleteButton}>
-                       <NavLink to='/cart'><ShoppingCartOutlinedIcon className={classes.deleteButton}/></NavLink>
+                       <ShoppingCartOutlinedIcon className={classes.deleteButton}/>
                        <span className={classes.addedItems}>{addedItems.length}</span>
                     </Button>
+                    </NavLink>
                 </Toolbar>
             </AppBar>
         </div>
