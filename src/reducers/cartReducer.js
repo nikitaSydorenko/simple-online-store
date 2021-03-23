@@ -21,12 +21,14 @@ const cartReducer = (state = initialState, action) => {
         case ADD_TO_CART:
             return {
                 ...state,
-                addedItems: [...state.addedItems, action.addedItem],
+                addedItems: [...state.addedItems, action.payload.addedItem],
+                total: action.payload.newTotal
             }
         case REMOVE_FROM_CART:
             return {
                 ...state,
-                addedItems: state.addedItems.filter(item => item.id !== action.payload.id)
+                addedItems: state.addedItems.filter(item => item.id !== action.payload.removedItemId.id),
+                total: action.payload.newTotal
             }
         default: return state
     }
