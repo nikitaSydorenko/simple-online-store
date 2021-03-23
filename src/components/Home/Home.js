@@ -49,21 +49,23 @@ const Home = () => {
     total
   } = useSelector(state => state.cart);
 
+  const handleAddToCart = useCallback((id) => () => {
+    let addedItem = items.find(item => item.id === id)
+    let existed_item = addedItems.find(item => id === item.id);
+    if (existed_item) {
+      addedItem.quantity += 1;
+    } else {
+      addedItem.quantity = 1;
+      let newTotal = total + addedItem.price;
+      dispatch(addToCart(addedItem));
+    }
+
+  }, [addedItems, items, total]);
+
   return (
     <div className={classes.cards}>
       {items.map((item) => {
-        const handleAddToCart = useCallback((id) => {
-          let addedItem = items.find(item => item.id === id)
-          let existed_item = addedItems.find(item => id === item.id);
-          if (existed_item) {
-            addedItem.quantity += 1;
-          } else {
-            addedItem.quantity = 1;
-            let newTotal = total + addedItem.price;
-            dispatch(addToCart(addedItem));
-          }
 
-        }, [addedItems, items, total]);
         return (
           <Card className={classes.root} key={item.id}>
             <NavLink to={`/product/${item.id}`}>
@@ -91,7 +93,7 @@ const Home = () => {
                 <NavLink to={`/product/${item.id}`}>More</NavLink>
               </Button>
               <AddShoppingCartIcon className={classes.icon}
-                                   onClick={() => handleAddToCart(item.id)}/>
+                                   onClick={handleAddToCart(item.id)}/>
             </CardActions>
           </Card>
         );

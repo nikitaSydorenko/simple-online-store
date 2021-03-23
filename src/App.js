@@ -14,8 +14,8 @@ const App = () => (
           <div className='home'>
             <Switch>
               <Route path='/product/:id' render={ (props) => <OneProduct {...props}/> }/>
-              <Route path='/cart' component={Cart}/>
-              <Route path='/' component={Home}/>
+              <Route exact path='/cart' component={Cart}/>
+              <Route exact path='/' component={Home}/>
             </Switch>
           </div>
       </BrowserRouter>
