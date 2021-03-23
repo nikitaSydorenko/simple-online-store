@@ -17,16 +17,22 @@ const initialState = {
 }
 
 const cartReducer = (state = initialState, action) => {
+    const { payload = {} } = action;
+    const { newTotal = 0 } = payload;
+    const { addedItem = {} } = payload;
+    const { removedItem = {} } = payload
     switch (action.type) {
         case ADD_TO_CART:
             return {
                 ...state,
-                addedItems: [...state.addedItems, action.addedItem],
+                addedItems: [...state.addedItems, addedItem],
+                total: newTotal
             }
         case REMOVE_FROM_CART:
             return {
                 ...state,
-                addedItems: state.addedItems.filter(item => item.id !== action.payload.id)
+                addedItems: state.addedItems.filter(item => item.id !== removedItem.id),
+                total: newTotal
             }
         default: return state
     }

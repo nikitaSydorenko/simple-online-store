@@ -50,14 +50,17 @@ const Home = () => {
   } = useSelector(state => state.cart);
 
   const handleAddToCart = useCallback((id) => () => {
-    let addedItem = items.find(item => item.id === id)
+    let addedItem = items.find(item => item.id === id);
     let existed_item = addedItems.find(item => id === item.id);
     if (existed_item) {
       addedItem.quantity += 1;
     } else {
       addedItem.quantity = 1;
       let newTotal = total + addedItem.price;
-      dispatch(addToCart(addedItem));
+      dispatch(addToCart({
+        addedItem,
+        newTotal
+      }));
     }
 
   }, [addedItems, items, total]);
