@@ -1,6 +1,8 @@
+body{
+    background-color: #f3f3f3;
+}
 
 .home{
-
     display: flex;
     justify-content: center;
     align-items: center;
