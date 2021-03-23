@@ -6,8 +6,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
-import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-import { addToCart } from '../../actions/actionCart';
+import RemoveShoppingCartOutlinedIcon from '@material-ui/icons/RemoveShoppingCartOutlined';
 import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
 import { NavLink } from 'react-router-dom';
@@ -21,10 +20,14 @@ const useStyles = makeStyles({
   },
   media: {
     height: 300,
+    backgroundSize: 'contain'
   },
   icon: {
     cursor: 'pointer',
     fontSize: '1.5em'
+  },
+  removeCart: {
+
   }
 });
 
@@ -55,10 +58,11 @@ const Cart = () => {
                 </Typography>
               </CardContent>
             </CardActionArea>
+            <Typography color="textPrimary" variant="h5">
+              Quantity: {item.quantity}
+            </Typography>
             <CardActions>
-              <Button size="small" color="primary">
-                Learn More
-              </Button>
+              <RemoveShoppingCartOutlinedIcon className={classes.removeCart}/>
             </CardActions>
           </Card>
         )

@@ -6,8 +6,8 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { NavLink } from 'react-router-dom';
 
 const useStyles = makeStyles({
   root: {
@@ -16,6 +16,7 @@ const useStyles = makeStyles({
   },
   media: {
     height: 300,
+    backgroundSize: 'contain'
   },
   content: {
     textAlign: 'center'
@@ -23,9 +24,18 @@ const useStyles = makeStyles({
   allDesc: {
     margin: '20px',
     textAlign: 'center'
+  },
+  link: {
+    textDecoration: 'none',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: 'black',
+    padding: '10px',
+    fontSize: '18px'
   }
-});
 
+});
 
 const OneProduct = ({match}) => {
   const classes = useStyles();
@@ -57,6 +67,7 @@ const OneProduct = ({match}) => {
           At beatae dolore illo illum laborum magni nesciunt optio sed.
           Adipisci alias aliquam asperiores cupiditate deleniti dolor harum incidunt modi nihil perferendis!
         </p>
+      <NavLink to='/' className={classes.link}>Back to shop </NavLink>
     </Card>
   )
 }

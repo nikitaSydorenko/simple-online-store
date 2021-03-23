@@ -26,6 +26,17 @@ const useStyles = makeStyles((theme) => ({
         cursor: 'pointer',
         color: '#f3f3f3',
         textDecoration: 'none'
+    },
+    addedItems: {
+        border: 'red solid 1px',
+        borderRadius: '10px',
+        fontSize: '13px',
+        paddingLeft: '6px',
+        paddingRight: '6px',
+        backgroundColor: 'red',
+        position: 'relative',
+        right: '12px',
+        bottom: '15px'
     }
 }));
 
@@ -42,7 +53,7 @@ const Navbar = () => {
                     </Typography>
                     <Button className={classes.deleteButton}>
                        <NavLink to='/cart'><ShoppingCartOutlinedIcon className={classes.deleteButton}/></NavLink>
-                        {addedItems.length}
+                       <span className={classes.addedItems}>{addedItems.length}</span>
                     </Button>
                 </Toolbar>
             </AppBar>
