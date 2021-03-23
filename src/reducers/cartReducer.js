@@ -1,4 +1,4 @@
-import { ADD_TO_CART } from '../types/types';
+import { ADD_TO_CART, REMOVE_FROM_CART } from '../types/types';
 
 const initialState = {
     items: [
@@ -17,12 +17,16 @@ const initialState = {
 }
 
 const cartReducer = (state = initialState, action) => {
-
     switch (action.type) {
         case ADD_TO_CART:
             return {
                 ...state,
                 addedItems: [...state.addedItems, action.addedItem],
+            }
+        case REMOVE_FROM_CART:
+            return {
+                ...state,
+                addedItems: state.addedItems.filter(item => item.id !== action.payload.id)
             }
         default: return state
     }

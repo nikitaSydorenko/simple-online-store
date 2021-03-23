@@ -1,5 +1,5 @@
-import React from 'react'
-import { useSelector } from 'react-redux';
+import React, { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
@@ -10,6 +10,7 @@ import RemoveShoppingCartOutlinedIcon from '@material-ui/icons/RemoveShoppingCar
 import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
 import { NavLink } from 'react-router-dom';
+import { removeFromCart } from '../../actions/actionCart';
 
 
 const useStyles = makeStyles({
@@ -27,13 +28,22 @@ const useStyles = makeStyles({
     fontSize: '1.5em'
   },
   removeCart: {
-
+    fontSize: '20px',
+    cursor: 'pointer',
+    color: 'red'
   }
 });
 
 const Cart = () => {
   const classes = useStyles();
   const { addedItems = [] } = useSelector(state => state.cart);
+  const dispatch = useDispatch()
+
+  const handleDeleteFromCart = useCallback((id) => () => {
+
+    let removedItemId = addedItems.find(item => item.id === id)
+    dispatch(removeFromCart(removedItemId))
+  }, [])
 
   return addedItems.length ?
     (
@@ -62,7 +72,7 @@ const Cart = () => {
               Quantity: {item.quantity}
             </Typography>
             <CardActions>
-              <RemoveShoppingCartOutlinedIcon className={classes.removeCart}/>
+              <RemoveShoppingCartOutlinedIcon className={classes.removeCart} onClick={handleDeleteFromCart(item.id)}/>
             </CardActions>
           </Card>
         )
