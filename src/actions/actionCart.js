@@ -8,10 +8,10 @@ export const addToCart = ({ addedItem, newTotal }) => ({
   }
 })
 
-export const removeFromCart = ({ removedItemId, newTotal }) => ({
+export const removeFromCart = ({ removedItem, newTotal }) => ({
     type: REMOVE_FROM_CART,
     payload: {
-      removedItemId,
+      removedItem,
       newTotal
     }
 })

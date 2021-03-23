@@ -48,9 +48,9 @@ const Cart = () => {
   } = useSelector(state => state.cart);
   const dispatch = useDispatch();
   const handleDeleteFromCart = useCallback((id) => () => {
-    let removedItemId = addedItems.find(item => item.id === id);
-    let newTotal = total - ( removedItemId.price * removedItemId.quantity)
-    dispatch(removeFromCart({ removedItemId, newTotal }));
+    let removedItem = addedItems.find(item => item.id === id);
+    let newTotal = total - ( removedItem.price * removedItem.quantity)
+    dispatch(removeFromCart({ removedItem, newTotal }));
   }, [total]);
 
   // handle errors
